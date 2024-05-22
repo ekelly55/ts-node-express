@@ -67,3 +67,8 @@ You can customize the project configuration i nthe `tsconfig.json` file and adju
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
+
+
+after initial repo, continued on to:
+
+https://dev.to/realsteveig/nodejs-and-typescript-tutorial-build-a-rest-api-with-typescript-nodejs-and-a-file-based-storage-system-2l61
