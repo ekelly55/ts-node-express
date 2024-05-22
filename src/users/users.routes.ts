@@ -11,7 +11,7 @@ export const userRouter = express.Router()
 userRouter.get("/users", async (req: Request, res: Response) => {
     try {
         //all users will take the type of array of UnitUsers. wait for the repository to find them with the find all method
-        const allUsers: UnitUser[] =- await database.findAll()
+        const allUsers: UnitUser[] = await database.findAll()
 
         //if they don't exist, throw error
         if (!allUsers){

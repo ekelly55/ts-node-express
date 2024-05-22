@@ -2,15 +2,25 @@ import express, {Express, Request, Response} from 'express';
 import dotenv from 'dotenv'
 import cors from 'cors'
 import helmet from 'helmet'
+import { userRouter } from './users/users.routes';
 
 
 dotenv.config()
 
-const app: Express = express();
-const port = process.env.PORT || 3000;
 
+const port = process.env.PORT || 3000;
+const app: Express = express();
+
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(cors())
+app.use(helmet())
+
+app.use('/', userRouter)
+
+// this part is now handled by the router?
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server updated again: user db renamed');
+  res.send('this is a backup branch. reverting to earlier commit in original ts-express-api branch for debugging');
 });
 
 app.listen(port, () => {
