@@ -20,7 +20,7 @@ app.use('/', userRouter)
 
 // this part is now handled by the router?
 app.get('/', (req: Request, res: Response) => {
-  res.send('this is a backup branch. reverting to earlier commit in original ts-express-api branch for debugging');
+  res.send('this is a backup branch. server fixed');
 });
 
 app.listen(port, () => {
