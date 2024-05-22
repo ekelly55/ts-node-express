@@ -20,7 +20,7 @@ app.use('/', userRouter)
 
 // this part is now handled by the router?
 app.get('/', (req: Request, res: Response) => {
-  res.send('fixed nodemon/--respawn incompatibility and merged in backup');
+  res.send('server fixed');
 });
 
 app.listen(port, () => {
