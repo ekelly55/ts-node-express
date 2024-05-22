@@ -57,4 +57,64 @@ export const create = async (userData: UnitUser): Promise<UnitUser | null> => {
     saveUsers()
 
     return user;
-};  
+};
+
+export const findByEmail = async (user_email: string): Promise<null | UnitUser> => {
+
+    const allUsers = await findAll()
+
+    const getUser = allUsers.find(result => user_email ===result.email);
+    
+    if(!getUser){
+        return null;
+    }
+
+    return getUser;
+};
+
+export const comparePassword = async (email: string, supplied_password: string): Promise<null | UnitUser> =>{
+    const user = await findByEmail(email)
+    const decryptPassword = await bcrypt.compare(supplied_password, user!.password)
+
+    if(!decryptPassword){
+        return null
+    }
+
+    return user
+}
+
+export const update = async (id: string, updateValues: User): Promise<UnitUser | null> =>{
+    const userExists = await findOne(id)
+
+    if(!userExists){
+        return null
+    }
+
+    if(updateValues.password){
+        const salt = await bcrypt.genSalt(10)
+        const newPass = await bcrypt.hash(updateValues.password, salt)
+
+        updateValues.password = newPass
+    }
+
+    users[id] = {
+        ...userExists,
+        ...updateValues
+    }
+
+    saveUsers()
+
+    return users[id]
+}
+
+export const remove = async (id: string): Promise<null | void> => {
+    const user = await findOne(id)
+
+    if(!user){
+        return null
+    }
+
+    delete users[id]
+
+    saveUsers()
+}
