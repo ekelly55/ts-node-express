@@ -13,9 +13,9 @@ let users: Users = loadUsers()
 function loadUsers (): Users {
     //async function
     try{
-        //data is what's returned by the file system function readfilesync when it accesseses the users.json
+        //data is what's returned by the file system function readfilesync when it accesseses the users data file as a parameter
         const data = fs.readFileSync('./users.json', 'utf-8')
-        //return the data, parsed from the json object
+        //return the data, parsed as a JSON object
         return JSON.parse(data)
     } catch (error){
         console.log(`Error ${error}`)
@@ -33,7 +33,7 @@ function saveUsers(){
     }
 }
 
-//findall is an async function of type Promise - it will return all users as an object of unitusers 
+//findall is an async function of type Promise - it will return all users as an object of unitusers if able 
 export const findAll = async (): Promise<UnitUser[]> => Object.values(users);
 
 //findone is the same. it takes a parameter of an id and is a promise, returning a unituser, which is also the user id
